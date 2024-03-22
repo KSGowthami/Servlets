@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+<!-- Bootstrap CSS -->
+<link
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center"
+                id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active me-3 "
+                        aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white me-3"
+                        href="computerParts.html">Computer Parts</a></li>
+                    <li class="nav-item"><a class="nav-link text-white me-3"
+                        href="TvRecharge.html">TV Recharge</a></li>
+                        <li class="nav-item"><a class="nav-link text-white me-3"
+                        href="StudentExamFee.html">Student Exam Fee</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h2 class="text-center mb-5 mt-4 ">Exam Fee Application</h2>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="card col-md-5  h-180">
+                <div class="card-header" style="font-weight: bold;">Enter Exam Fees Details</div>
+                <div class="card-body">
+                    <form id="registrationForm" action="examFee" method="post"
+                        onsubmit="return validateForm()">
+                        <div class="form-group">
+                            <label for="registerNumber">Register Number</label> <input
+                                type="text" class="form-control" id="registerNumber"
+                                name="registerNumber" placeholder="Enter your register no." oninput="checkInputs()"> <span id="registerNumberError"
+                                style="color: red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label> <input type="text"
+                                class="form-control" id="name" name="name" placeholder="Enter your name" oninput="checkInputs()"> <span
+                                id="nameError" style="color: red;"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Course</label> <select class="form-control"
+                                id="course" name="course" onchange="checkInputs()">
+                                <option value="">Select Course</option>
+                                <option value="BCA">BCA</option>
+                                <option value="Bsc">Bsc</option>
+                                <option value="B.com">B.com</option>
+                                <option value="B.E">B.E</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="semester">Semester</label> <select
+                                class="form-control" id="semester" name="semester" onchange="checkInputs()">
+                                <option value="">Select Semester</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Payment Mode</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="paymentMode"
+                                    id="onlinePayment" value="onlinePayment" onchange="checkInputs()"> <label
+                                    class="form-check-label" for="onlinePayment">Online
+                                    Payment</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="paymentMode"
+                                    id="offlinePayment" value="offlinePayment" onchange="checkInputs()"> <label
+                                    class="form-check-label" for="offlinePayment">Offline
+                                    Payment</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="feeAmount">Fee Amount</label> <input type="text"
+                                class="form-control" id="feeAmount" name="feeAmount" placeholder="Enter amount" oninput="checkInputs()"> <span
+                                id="feeAmountError" style="color: red;"></span>
+                        </div>
+                        <button type="submit" id="submitBtn" class="btn btn-primary" disabled>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            var registerNumber = document.getElementById('registerNumber').value;
+            var name = document.getElementById('name').value;
+            var feeAmount = document.getElementById('feeAmount').value;
+
+            var registerNumberError = document.getElementById('registerNumberError');
+            var nameError = document.getElementById('nameError');
+            var feeAmountError = document.getElementById('feeAmountError');
+
+            var isValid = true;
+
+            // Validate Register Number
+            if (registerNumber.length !== 7) {
+                registerNumberError.innerHTML = "Register number must be 7 characters long.";
+                isValid = false;
+            } else {
+                registerNumberError.innerHTML = "";
+            }
+
+            // Validate Name
+            if (!/^[a-zA-Z\s]+$/.test(name)) {
+                nameError.innerHTML = "Name must contain only alphabets.";
+                isValid = false;
+            } else {
+                nameError.innerHTML = "";
+            }
+
+            // Validate Fee Amount
+            if (isNaN(feeAmount) || feeAmount !== '3000') {
+                feeAmountError.innerHTML = "Fee amount must be 3000.";
+                isValid = false;
+            } else {
+                feeAmountError.innerHTML = "";
+            }
+
+            return isValid;
+        }
+
+        function checkInputs() {
+            var registerNumber = document.getElementById('registerNumber').value;
+            var name = document.getElementById('name').value;
+            var course = document.getElementById('course').value;
+            var semester = document.getElementById('semester').value;
+            var feeAmount = document.getElementById('feeAmount').value;
+            var onlinePayment = document.getElementById('onlinePayment').checked;
+            var offlinePayment = document.getElementById('offlinePayment').checked;
+
+            var submitBtn = document.getElementById('submitBtn');
+
+            if (registerNumber.trim() !== '' && name.trim() !== '' && course.trim() !== '' && semester.trim() !== '' && feeAmount.trim() !== '' && (onlinePayment || offlinePayment)) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+    </script>
+
+</body>
+</html>
+
