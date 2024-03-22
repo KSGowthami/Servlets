@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Application For Death Certificate</title>
+</head>
+<body>
+<form action="ApplyDeath" method="post">
+<h1>Application Form For Death Certificate</h1>
+Name<input type="text" name="name"> <br>
+Death date<input type="datetime-local" name="deathDate" /><br>
+Age <input type="text" name="age"><br>
+Cause<select name="cause">
+<option value="">--Select---</option>
+<option>Accident</option>
+<option>Cancer</option>
+<option>HeartAttack</option>
+<option>Natural</option>
+<option>Organs Failure</option>
+<option>Sickness</option>
+<option>Suicide</option>
+</select><br>
+Gender   Male<input type="radio" name="gender"  value="male"/>
+Female<input type="radio" name="gender"  value="female"/><br>
+Place of death<input type="text" name="deathPlace" /><br>
+Permanent Address<input type="text" name="address" /><br>
+Relation with deceased  <input type="text" name="relationPerson" /> <br>
+Registration No.<input type="text" name="regnum" /><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>
